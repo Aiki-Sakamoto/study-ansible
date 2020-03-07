@@ -1,2 +1,4 @@
 ansible_user: vagrant
 ansible_user_group: vagrant
+# AmazonExtrasからインストールするnginxのバージョン
+nginx_version: nginx1

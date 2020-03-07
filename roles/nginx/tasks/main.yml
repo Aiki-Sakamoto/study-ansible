@@ -1,0 +1,13 @@
+---
+# nginxのインストール先でAmazonExtras有効化
+- name: Enable amazon-linux-extras packages
+  become: yes
+  shell: "amazon-linux-extras enable {{nginx_version}}"
+
+# nginxをyumでインストール
+- name: install nginx from amazon extras
+  become: yes
+  yum: 
+    name: nginx
+    state: present
+    lock_timeout: 180

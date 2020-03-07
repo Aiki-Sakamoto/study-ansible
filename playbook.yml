@@ -6,3 +6,4 @@
     - { role: common, tags: common }
     - { role: git, tags: git}
     - { role: mysql, tags: mysql }
+    - { role: nginx, tags: nginx }

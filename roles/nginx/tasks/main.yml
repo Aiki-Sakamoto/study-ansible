@@ -11,3 +11,12 @@
     name: nginx
     state: present
     lock_timeout: 180
+
+# nginxの自動起動有効化と起動
+- name: Set auto start nginx
+  become: yes
+  command: systemctl enable nginx
+
+- name: Set restart nginx
+  become: yes
+  command: systemctl restart nginx

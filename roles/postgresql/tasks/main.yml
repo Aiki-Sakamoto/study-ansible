@@ -1,0 +1,18 @@
+---
+# postgresqlのインストール先でAmazonExtras有効化
+- name: Enable amazon-linux-extras packages
+  become: yes
+  shell: "amazon-linux-extras enable {{ postgresql_version }}"
+
+# postgresqlをyumでインストール
+- name: install postgresql from amazon extras
+  become: yes
+  yum: 
+    name: "{{ packages }}"
+    state: present
+    lock_timeout: 180
+  vars:
+      packages:
+        - postgresql-server
+        - postgresql-devel
+        - postgresql-contrib

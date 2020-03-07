@@ -2,3 +2,5 @@ ansible_user: vagrant
 ansible_user_group: vagrant
 # AmazonExtrasからインストールするnginxのバージョン
 nginx_version: nginx1
+# node.jsのrpmパッケージURL
+nodejs_rpm_url: https://rpm.nodesource.com/setup_12.x

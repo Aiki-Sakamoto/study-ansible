@@ -1,0 +1,12 @@
+---
+# Node.jsのセットアップ
+- name: Setup nodejs rpm
+  shell: curl -sL {{ nodejs_rpm_url }} | sudo -E bash -
+
+# Node.jsをyumでインストール
+- name: Installing node.js from rpm
+  become: yes
+  yum:
+    name: nodejs
+    state: present
+    lock_timeout: 180

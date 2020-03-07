@@ -7,3 +7,4 @@
     - { role: git, tags: git}
     - { role: mysql, tags: mysql }
     - { role: nginx, tags: nginx }
+    - { role: nodejs, tags: nodejs }

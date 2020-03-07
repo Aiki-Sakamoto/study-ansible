@@ -1,0 +1,11 @@
+---
+- name: install mysql client tool from yum repo
+  become: yes
+  yum: 
+    name: "{{ packages }}"
+    state: present
+    lock_timeout: 180
+  vars:
+      packages:
+        - mysql
+        - mysql-devel

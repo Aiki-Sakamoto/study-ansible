@@ -1,0 +1,6 @@
+---
+- name: Playbook for rails-tutorial
+  hosts: production
+  become: yes
+  roles:
+    - { role: common, tags: common }

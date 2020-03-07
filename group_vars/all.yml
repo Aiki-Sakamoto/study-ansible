@@ -3,4 +3,16 @@ ansible_user_group: vagrant
 # AmazonExtrasからインストールするnginxのバージョン
 nginx_version: nginx1
 # node.jsのrpmパッケージURL
-nodejs_rpm_url: https://rpm.nodesource.com/setup_12.x
+nodejs_rpm_url: 'https://rpm.nodesource.com/setup_12.x'
+# rbenvのダウンロードURL
+rbenv_download_url: 'https://github.com/sstephenson/rbenv.git'
+# ruby-buildのダウンロードURL
+ruby_build_download_url: 'https://github.com/rbenv/ruby-build.git'
+
+# Rubyのバージョン
+ruby_version: 2.6.0
+# bundlerのバージョン
+bundler_version: 2.1.4
+# railsのバージョン
+rails_version: 5.1.7
+

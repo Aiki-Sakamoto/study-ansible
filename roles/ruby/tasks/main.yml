@@ -1,0 +1,56 @@
+---
+# Rubyの依存関係を解決
+- name: Install dependencies of Ruby
+  become: yes
+  yum:
+    name: "{{ dependencies }}"
+    state: latest
+    lock_timeout: 180
+  vars:
+    dependencies:
+      - openssl-devel
+      - sqlite-devel
+      - gcc
+      - gcc-c++
+      - readline-devel
+      - zlib-devel
+
+# rbenvをgitでインストール
+- name: Install rbenv
+  git:
+    repo: "{{ rbenv_download_url }}"
+    dest: /usr/local/rbenv
+
+# bashrcを編集し、パスを通す
+- name: Edit bashrc
+  template:
+    # bashrcへ記述する内容は以下のtemplate
+    src: roles/ruby/templates/rbenv_system.sh.j2
+    dest: /etc/profile.d/rbenv.sh
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user_group }}"
+
+# ruby-buildをインストール
+- name: Install ruby-build
+  git:
+    repo: "{{ ruby_build_download_url }}"
+    dest: /usr/local/rbenv/plugins/ruby-build
+
+# Rubyのインストール
+# bash -lc ログインシェルで、あとに続く文字列を読み込む
+- name: Install Ruby
+  shell: bash -lc "rbenv install -s {{ ruby_version }}"
+
+- name: Set default Ruby version
+  shell: bash -lc "rbenv global {{ ruby_version }} && rbenv rehash"
+
+- name: Install bundler and so on
+  shell: bash -lc "gem install {{ item }}"
+  with_items:
+    - rbenv-rehash
+    - bundler -v "{{ bundler_version }}"
+
+- name: Install Rails
+  shell: bash -lc "gem install {{ item }}"
+  with_items:
+    - rails -v "{{ rails_version }}"

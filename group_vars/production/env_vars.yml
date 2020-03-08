@@ -1,0 +1,8 @@
+# rails
+DATABASE_PASSWORD: ''
+DATABASE_NAME: 'cfn-rails-tutorial-rds-mysql'
+
+# AWS
+AWS_S3_BUCKET: ''
+AWS_S3_ID: ''
+AWS_S3_SEC: ''

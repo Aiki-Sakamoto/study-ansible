@@ -26,6 +26,4 @@ ansible-playbook -i hosts/production playbook.yml --check
 
 # TODO
 
-* unicornとnginxの繋ぎこみ設定
 * database.ymlやmaster.key等の秘匿ファイルのテンプレート化
-* railsのproduction環境への対応

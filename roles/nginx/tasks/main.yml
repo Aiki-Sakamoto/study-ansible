@@ -12,6 +12,16 @@
     state: present
     lock_timeout: 180
 
+# nginxを動作させるユーザーをec2-userへ変更する
+- name: Comment out the user that works Nginx nginx user
+  become: yes
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    state: present
+    backrefs: "yes"
+    regexp: '^(user nginx;)$'
+    line: 'user ec2-user;'
+
 # nginxの自動起動有効化と起動
 - name: Set auto start nginx
   become: yes

@@ -22,6 +22,24 @@
     regexp: '^(user nginx;)$'
     line: 'user ec2-user;'
 
+# nginxの0.0.0.0:80のdefault_serverを次に追加するsample_app用unicornの設定に変更
+- name: Change nginx default_sever IPv4
+  become: yes
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    state: present
+    backrefs: "yes"
+    regexp: '(listen       80.*)$'
+    # TODO もっと良い書き方があるか調べる。現状、半角スペース8つ入れている。
+    line: '        listen       80;'
+
+# sample_app用のtemplateを追加
+- name: Add sample_app.conf for target
+  template:
+    src: roles/nginx/templates/sample_app.conf.j2
+    dest: /etc/nginx/conf.d/sample_app.conf
+  when: "'targets' in group_names"
+
 # nginxの自動起動有効化と起動
 - name: Set auto start nginx
   become: yes

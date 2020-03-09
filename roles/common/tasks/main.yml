@@ -10,17 +10,6 @@
     line: '#\1'
     validate: '/usr/sbin/visudo -cf %s'
 
-# 以下の書き方では、最終行にline:で指定した文字列が追記し続けられるのでNGか?
-# 参考 https://qiita.com/Ki2neudon/items/b43b68e48f4e403266ce#comment-dd5261a37f5a509ebd31
-# - name: Comment out of default source_path
-#   become: yes
-#   lineinfile:
-#     path: /etc/sudoers
-#     state: present
-#     regexp: '^Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin'
-#     line: '# Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin'
-#     validate: '/usr/sbin/visudo -cf %s'
-
 - name: Enable env_reset and env_keep for PATH
   become: yes
   blockinfile:
@@ -36,7 +25,7 @@
 - name: Create RailsTutorial app dir
   become: yes
   file:
-    path: /home/vagrant/workspace
+    path: /home/ec2-user/workspace
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user_group }}"

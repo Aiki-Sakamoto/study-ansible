@@ -27,3 +27,4 @@ ansible-playbook -i hosts/production playbook.yml --check
 # TODO
 
 * database.ymlやmaster.key等の秘匿ファイルのテンプレート化
+* nginx.confのdefault_saverの記述を修正する

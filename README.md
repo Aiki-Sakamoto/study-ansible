@@ -1,6 +1,23 @@
 # RailsTutorialの構成をAnsibleで構築させる
 
 ## Ansible のインストール
+
+### yum でインストール
+
+* AmazonLinux2の場合
+
+  * EPELレポジトリの有効化
+  ```
+  sudo amazon-linux-extras install epel
+  ```
+
+  * yumでAnsibleをインストール
+  ```
+  sudo yum install ansible
+  ```
+
+### pipでインストール
+
 git cloneしたリポジトリで
 ```
 pip install -r requirements.txt
